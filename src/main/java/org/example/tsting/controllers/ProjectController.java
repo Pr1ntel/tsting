@@ -1,13 +1,28 @@
 package org.example.tsting.controllers;
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.example.tsting.dtos.project_dto.ProjectRequestDto;
+import org.example.tsting.dtos.project_dto.ProjectResponseDto;
+import org.example.tsting.servises.ProjectService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @AllArgsConstructor
 @RequestMapping("/api/v1/main-project")
 public class ProjectController {
+    private final ProjectService projectService;
+
+
+    @GetMapping(value = "/all-projects")
+    public List<ProjectResponseDto> getAllProjects() {
+        return projectService.getAll();
+    }
+
+    @PostMapping(value = "/new-project")
+    public void addNewProject(@RequestBody ProjectRequestDto projectRequestDto) {
+        projectService.addNewProject(projectRequestDto);
+    }
 }

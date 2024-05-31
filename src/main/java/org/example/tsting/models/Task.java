@@ -22,10 +22,10 @@ public class Task {
     private TaskStageName taskStageName;
 
     @Column(name = "task_title")
-    private int taskTitle;
+    private String taskTitle;
 
     @Column(name = "task_description")
-    private int taskDescription;
+    private String taskDescription;
 
     @ManyToOne
     @JoinColumn(name = "executor_id")
@@ -33,6 +33,10 @@ public class Task {
 
     @Column(name = "task_duration_time")
     private int taskDurationTime;
+
+    @ManyToOne
+    @JoinColumn(name = "task_duration_term_id")
+    private ProjectTermName projectTerm;
 
     @ManyToOne
     @JoinColumn(name = "priority_type_id")

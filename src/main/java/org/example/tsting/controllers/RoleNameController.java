@@ -10,4 +10,5 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @RequestMapping("/api/v1/main-role-name")
 public class RoleNameController {
+
 }

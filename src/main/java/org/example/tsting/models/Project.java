@@ -23,6 +23,9 @@ public class Project {
     @Column(name = "project_description")
     private String projectDescription;
 
+    @Column(name = "project_task")
+    private String projectTask;
+
     @ManyToOne
     @JoinColumn(name = "project_stage_id")
     private ProjectStageName projectStage;
