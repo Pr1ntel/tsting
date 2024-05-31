@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @AllArgsConstructor
-@RequestMapping("/api/v1/main-task")
+@RequestMapping("/api/v1/main")
 public class TaskController {
     private final TaskService taskService;
 

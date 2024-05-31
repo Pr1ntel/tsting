@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @AllArgsConstructor
-@RequestMapping("/api/v1/main-project-term-name")
+@RequestMapping("/api/v1/main")
 public class ProjectTermNameController {
     private final ProjectTermNameService projectTermNameService;
 

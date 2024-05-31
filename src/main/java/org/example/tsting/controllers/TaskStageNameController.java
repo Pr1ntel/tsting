@@ -13,12 +13,12 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @AllArgsConstructor
-@RequestMapping("/api/v1/main-task-stage-name")
+@RequestMapping("/api/v1/main")
 public class TaskStageNameController {
     private final TaskStageNameService taskStageNameService;
 
-    @GetMapping(value = "/all-stage-name")
-    public List<TaskStageTypeResponseDto> getAllTermNames() {
+    @GetMapping(value = "/all-task-stage-name")
+    public List<TaskStageTypeResponseDto> getAllStageTypeNames() {
         return taskStageNameService.getAllStageNames();
     }
 }

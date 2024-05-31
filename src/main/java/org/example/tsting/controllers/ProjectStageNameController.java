@@ -15,11 +15,11 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @AllArgsConstructor
-@RequestMapping("/api/v1/main-project-stage-name")
+@RequestMapping("/api/v1/main")
 public class ProjectStageNameController {
     private final ProjectStageNameService projectStageNameService;
 
-    @GetMapping(value = "/all-stage-name")
+    @GetMapping(value = "/all-project-stage-name")
     public List<ProjectStageNameResponseDto> getAllStageNames() {
         return projectStageNameService.getAllProjectStageNames();
     }
