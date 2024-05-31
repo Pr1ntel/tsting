@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProjectResponseDto {
+    private int id;
     private String projectName;
     private String projectTask;
     private String projectDescription;

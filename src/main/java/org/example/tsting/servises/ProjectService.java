@@ -26,6 +26,7 @@ public class ProjectService {
     public List<ProjectResponseDto> getAll() {
         return projectRepository.findAll().stream().map(
                 projects -> ProjectResponseDto.builder()
+                        .id(projects.getId())
                         .projectName(projects.getProjectName())
                         .projectDescription(projects.getProjectDescription())
                         .projectTask(projects.getProjectTask())
@@ -41,6 +42,7 @@ public class ProjectService {
         ProjectStageName findProjectStageName = projectStageNameRepository.findById(projectRequestDto.getProjectStageId()).get();
 
         Project insertNewProject = Project.builder()
+                .id(projectRequestDto.getId())
                 .projectName(projectRequestDto.getProjectName())
                 .projectDescription(projectRequestDto.getProjectDescription())
                 .projectTask(projectRequestDto.getProjectTask())

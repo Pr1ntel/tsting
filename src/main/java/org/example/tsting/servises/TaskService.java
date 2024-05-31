@@ -26,6 +26,7 @@ public class TaskService {
     public List<TaskResponseDto> getAll() {
         return taskRepository.findAll().stream().map(
                 task -> TaskResponseDto.builder()
+                        .id(task.getId())
                         .taskStageId(task.getTaskStageName().getTaskStageName())
                         .taskTitle(task.getTaskTitle())
                         .taskDescription(task.getTaskDescription())
@@ -44,6 +45,7 @@ public class TaskService {
         TaskPriorityType findPriorityTypeId = priorityTypeRepository.findById(taskRequestDto.getPriorityTypeId()).get();
 
                 Task insertNewTask = Task.builder()
+                        .id(taskRequestDto.getId())
                         .taskStageName(findStageNameId)
                         .taskTitle(taskRequestDto.getTaskTitle())
                         .taskDescription(taskRequestDto.getTaskDescription())

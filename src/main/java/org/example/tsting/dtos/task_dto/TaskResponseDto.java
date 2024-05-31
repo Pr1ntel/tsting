@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TaskResponseDto {
+    private int id;
     private String taskStageId;
     private String taskTitle;
     private String taskDescription;
