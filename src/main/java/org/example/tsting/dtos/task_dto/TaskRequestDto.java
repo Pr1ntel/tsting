@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TaskRequestDto {
     private int id;
-    private int taskStageId;
     private String taskTitle;
     private String taskDescription;
     private int executorId;
@@ -19,4 +18,5 @@ public class TaskRequestDto {
     private int taskDurationTermId;
     private int priorityTypeId;
     private int projectId;
+    private int taskStageId;
 }

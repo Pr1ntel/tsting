@@ -45,20 +45,48 @@ public class TaskService {
         TaskPriorityType findPriorityTypeId = priorityTypeRepository.findById(taskRequestDto.getPriorityTypeId()).get();
         Project findProjectName = projectRepository.findById(taskRequestDto.getProjectId()).get();
 
-                Task insertNewTask = Task.builder()
-                        .id(taskRequestDto.getId())
-                        .taskStageName(findStageNameId)
-                        .taskTitle(taskRequestDto.getTaskTitle())
-                        .taskDescription(taskRequestDto.getTaskDescription())
-                        .executorId(findUserId)
-                        .taskDurationTime(taskRequestDto.getTaskDurationTime())
-                        .projectTerm(findTermNameId)
-                        .taskPriorityType(findPriorityTypeId)
-                        .projectId(findProjectName)
+        Task insertNewTask = Task.builder()
+                .id(taskRequestDto.getId())
+                .taskStageName(findStageNameId)
+                .taskTitle(taskRequestDto.getTaskTitle())
+                .taskDescription(taskRequestDto.getTaskDescription())
+                .executorId(findUserId)
+                .taskDurationTime(taskRequestDto.getTaskDurationTime())
+                .projectTerm(findTermNameId)
+                .taskPriorityType(findPriorityTypeId)
+                .projectId(findProjectName)
                 .build();
         taskRepository.save(insertNewTask);
     }
-    public Task deleteTaskById(int id){
+
+    public Task deleteTaskById(int id) {
         return taskRepository.deleteById(id);
+    }
+
+    public Task updateTaskById(int id, TaskRequestDto taskRequestDto) {
+        Task updateTaskId = taskRepository.findTaskById(id);
+        User findUserById = userRepository.findById(taskRequestDto.getExecutorId()).get();
+        ProjectTermName findTaskTermName = projectTermNameRepository.findById(taskRequestDto.getTaskDurationTermId()).get();
+        TaskPriorityType findTaskPriorityType = priorityTypeRepository.findById(taskRequestDto.getPriorityTypeId()).get();
+        Project findProjectById = projectRepository.findById(taskRequestDto.getProjectId()).get();
+        TaskStageName findTaskStageName = taskStageNameRepository.findById(taskRequestDto.getTaskStageId()).get();
+
+
+        if (updateTaskId != null) {
+            updateTaskId.setTaskTitle(taskRequestDto.getTaskTitle());
+            updateTaskId.setTaskDescription(taskRequestDto.getTaskDescription());
+            updateTaskId.setExecutorId(findUserById);
+            updateTaskId.setTaskDurationTime(taskRequestDto.getTaskDurationTime());
+            updateTaskId.setProjectTerm(findTaskTermName);
+            updateTaskId.setTaskPriorityType(findTaskPriorityType);
+            updateTaskId.setProjectId(findProjectById);
+            updateTaskId.setTaskStageName(findTaskStageName);
+
+
+            return taskRepository.save(updateTaskId);
+        } else {
+            System.out.println("не найден id");
+        }
+        return updateTaskId;
     }
 }

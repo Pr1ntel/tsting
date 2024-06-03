@@ -30,4 +30,8 @@ public class ProjectController {
     public Project projectDelete(@PathVariable int id) {
         return projectService.deleteProjectById(id);
     }
+    @PatchMapping(value = "/update-project/{id}")
+    public Project updateProject(@PathVariable int id, @RequestBody ProjectRequestDto projectRequestDto) {
+        return projectService.updateProjectById(id, projectRequestDto);
+    }
 }

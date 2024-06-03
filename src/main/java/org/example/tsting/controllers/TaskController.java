@@ -29,4 +29,8 @@ public class TaskController {
     public Task deleteTask(@PathVariable int id) {
         return taskService.deleteTaskById(id);
     }
+    @PatchMapping(value = "/update-task/{id}")
+    public Task updateProject(@PathVariable int id, @RequestBody TaskRequestDto taskRequestDto) {
+        return taskService.updateTaskById(id, taskRequestDto);
+    }
 }

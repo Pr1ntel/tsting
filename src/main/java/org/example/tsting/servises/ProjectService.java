@@ -52,7 +52,28 @@ public class ProjectService {
                 .build();
         projectRepository.save(insertNewProject);
     }
+
     public Project deleteProjectById(int id) {
         return projectRepository.deleteById(id);
+    }
+
+    public Project updateProjectById(int id, ProjectRequestDto projectRequestDto) {
+        Project updateProjectId = projectRepository.findProjectById(id);
+        ProjectStageName findProjectStageName = projectStageNameRepository.findById(projectRequestDto.getProjectStageId()).get();
+        ProjectTermName findProjectTermName = projectTermNameRepository.findById(projectRequestDto.getProjectDurationTermId()).get();
+
+
+        if (updateProjectId != null){
+            updateProjectId.setProjectName(projectRequestDto.getProjectName());
+            updateProjectId.setProjectDescription(projectRequestDto.getProjectDescription());
+            updateProjectId.setProjectTask(projectRequestDto.getProjectTask());
+            updateProjectId.setProjectDurationTime(projectRequestDto.getProjectDurationTime());
+            updateProjectId.setProjectStage(findProjectStageName);
+            updateProjectId.setProjectTerm(findProjectTermName);
+            return projectRepository.save(updateProjectId);
+        }else {
+            System.out.println("не найден id");
+        }
+        return updateProjectId;
     }
 }
