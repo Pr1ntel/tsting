@@ -52,4 +52,7 @@ public class ProjectService {
                 .build();
         projectRepository.save(insertNewProject);
     }
+    public Project deleteProjectById(int id) {
+        return projectRepository.deleteById(id);
+    }
 }

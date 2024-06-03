@@ -42,4 +42,7 @@ public class Task {
     @JoinColumn(name = "priority_type_id")
     private TaskPriorityType taskPriorityType;
 
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project projectId;
 }

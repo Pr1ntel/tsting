@@ -18,4 +18,5 @@ public class TaskResponseDto {
     private int taskDurationTime;
     private String taskDurationTermId;
     private String priorityTypeId;
+    private String projectName;
 }

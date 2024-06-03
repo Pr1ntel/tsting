@@ -2,9 +2,7 @@ package org.example.tsting.servises;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.example.tsting.dtos.project_stage_name_dto.ProjectStageNameResponseDto;
 import org.example.tsting.dtos.task_stage_type_dto.TaskStageTypeResponseDto;
-import org.example.tsting.repositorys.ProjectStageNameRepository;
 import org.example.tsting.repositorys.TaskStageNameRepository;
 import org.springframework.stereotype.Service;
 

@@ -18,4 +18,5 @@ public class TaskRequestDto {
     private int taskDurationTime;
     private int taskDurationTermId;
     private int priorityTypeId;
+    private int projectId;
 }

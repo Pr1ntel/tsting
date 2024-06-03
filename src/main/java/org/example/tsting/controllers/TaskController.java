@@ -1,9 +1,9 @@
 package org.example.tsting.controllers;
 
 import lombok.AllArgsConstructor;;
-import org.example.tsting.dtos.project_dto.ProjectRequestDto;
 import org.example.tsting.dtos.task_dto.TaskRequestDto;
 import org.example.tsting.dtos.task_dto.TaskResponseDto;
+import org.example.tsting.models.Task;
 import org.example.tsting.servises.TaskService;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,5 +24,9 @@ public class TaskController {
     @PostMapping(value = "/new-task")
     public void addNewProject(@RequestBody TaskRequestDto taskRequestDto) {
         taskService.addNewTask(taskRequestDto);
+    }
+    @DeleteMapping(value = "/delete-task/{id}")
+    public Task deleteTask(@PathVariable int id) {
+        return taskService.deleteTaskById(id);
     }
 }

@@ -2,8 +2,6 @@ package org.example.tsting.servises;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.example.tsting.dtos.project_dto.ProjectRequestDto;
-import org.example.tsting.dtos.project_dto.ProjectResponseDto;
 import org.example.tsting.dtos.task_dto.TaskRequestDto;
 import org.example.tsting.dtos.task_dto.TaskResponseDto;
 import org.example.tsting.models.*;
@@ -22,6 +20,7 @@ public class TaskService {
     private final UserRepository userRepository;
     private final ProjectTermNameRepository projectTermNameRepository;
     private final TaskPriorityTypeRepository priorityTypeRepository;
+    private final ProjectRepository projectRepository;
 
     public List<TaskResponseDto> getAll() {
         return taskRepository.findAll().stream().map(
@@ -34,6 +33,7 @@ public class TaskService {
                         .taskDurationTime(task.getTaskDurationTime())
                         .taskDurationTermId(task.getProjectTerm().getProjectTermName())
                         .priorityTypeId(task.getTaskPriorityType().getTaskPriorityTypeName())
+                        .projectName(task.getProjectId().getProjectName())
                         .build()
         ).collect(Collectors.toList());
     }
@@ -43,6 +43,7 @@ public class TaskService {
         User findUserId = userRepository.findById(taskRequestDto.getExecutorId()).get();
         ProjectTermName findTermNameId = projectTermNameRepository.findById(taskRequestDto.getTaskDurationTermId()).get();
         TaskPriorityType findPriorityTypeId = priorityTypeRepository.findById(taskRequestDto.getPriorityTypeId()).get();
+        Project findProjectName = projectRepository.findById(taskRequestDto.getProjectId()).get();
 
                 Task insertNewTask = Task.builder()
                         .id(taskRequestDto.getId())
@@ -53,7 +54,11 @@ public class TaskService {
                         .taskDurationTime(taskRequestDto.getTaskDurationTime())
                         .projectTerm(findTermNameId)
                         .taskPriorityType(findPriorityTypeId)
+                        .projectId(findProjectName)
                 .build();
         taskRepository.save(insertNewTask);
+    }
+    public Task deleteTaskById(int id){
+        return taskRepository.deleteById(id);
     }
 }

@@ -3,6 +3,7 @@ package org.example.tsting.controllers;
 import lombok.AllArgsConstructor;
 import org.example.tsting.dtos.project_dto.ProjectRequestDto;
 import org.example.tsting.dtos.project_dto.ProjectResponseDto;
+import org.example.tsting.models.Project;
 import org.example.tsting.servises.ProjectService;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,5 +25,9 @@ public class ProjectController {
     @PostMapping(value = "/new-project")
     public void addNewProject(@RequestBody ProjectRequestDto projectRequestDto) {
         projectService.addNewProject(projectRequestDto);
+    }
+    @DeleteMapping(value = "/delete-project/{id}")
+    public Project projectDelete(@PathVariable int id) {
+        return projectService.deleteProjectById(id);
     }
 }
